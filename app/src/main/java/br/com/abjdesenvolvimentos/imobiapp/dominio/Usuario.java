@@ -1,5 +1,7 @@
 package br.com.abjdesenvolvimentos.imobiapp.dominio;
 
+import android.content.ContentValues;
+
 public class Usuario {
     private int id;
     private String login;
@@ -27,5 +29,14 @@ public class Usuario {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public ContentValues getContentValues() {
+        ContentValues cv = new ContentValues();
+
+        cv.put("login", this.login);
+        cv.put("senha", this.senha);
+
+        return cv;
     }
 }

@@ -1,5 +1,7 @@
 package br.com.abjdesenvolvimentos.imobiapp.dominio;
 
+import android.content.ContentValues;
+
 public class Cliente {
     private int id;
     private String nome;
@@ -7,7 +9,6 @@ public class Cliente {
     private String cidade;
     private String cpf;
     private String email;
-    private Usuario login;
 
     public int getId() {
         return id;
@@ -57,11 +58,15 @@ public class Cliente {
         this.email = email;
     }
 
-    public Usuario getLogin() {
-        return login;
-    }
+    public ContentValues getContentValues() {
+        ContentValues cv = new ContentValues();
 
-    public void setLogin(Usuario login) {
-        this.login = login;
+        cv.put("nome", this.nome);
+        cv.put("endereco", this.endereco);
+        cv.put("cidade", this.cidade);
+        cv.put("cpf", this.cpf);
+        cv.put("email", this.email);
+
+        return cv;
     }
 }
