@@ -34,7 +34,7 @@ public class LoginActivity extends AppCompatActivity {
         entrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(LoginActivity.this, MenuImobi.class);
+                Intent i = new Intent(LoginActivity.this, MenuChooseActivity.class);
                 startActivity(i);
             }
         });

@@ -1,10 +1,9 @@
 package br.com.abjdesenvolvimentos.imobiapp.banco;
 
 import android.content.Context;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-
-import java.sql.SQLException;
 
 public class DBHelper extends SQLiteOpenHelper {
 
@@ -20,15 +19,27 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+        // tabela de usuarios
+        db.execSQL("CREATE TABLE usarios(id INTERGER PRIMARY KEY AUTOINCREMENT, login TEXT, senha TEXT, " +
+                "email TEXT)");
 
-        db.execSQL("CREATE TABLE clientes(id INTERGER PRIMARY KEY AUTOINCREMENT, nome TEXT, " +
-                "endereco TEXT, cidade TEXT, cpf TEXT, email TEXT)");
+        // tabela de corretoras
+        db.execSQL("CREATE TABLE corretora(id INTERGER PRIMARY KEY AUTOINCREMENT, nome TEXT, cidade TEXT, " +
+                "telefone TEXT, cnpj INTERGER, email TEXT)");
+
+        // tabela de imoveis
+        db.execSQL("CREATE TABLE imoveis(id INTERGER PRIMARY KEY AUTOINCREMENT, descricao TEXT, " +
+                "preco DOUBLE, cidade TEXT, quartos INTERGER, comodos INTERGER, banheiros INTERGER, " +
+                "tipo TEXT, status TEXT, id_corretora INTERGER, " +
+                "FOREIGN KEY (id_corretora) REFERENCES corretora(id))");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
-        db.execSQL("DROP TABLE IF EXISTS db_imobiapp");
+        db.execSQL("DROP TABLE IF EXISTS usuarios");
+        db.execSQL("DROP TABLE IF EXISTS imoveis");
+        db.execSQL("DROP TABLE IF EXISTS corretora");
         onCreate(db);
     }
 

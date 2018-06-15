@@ -1,12 +1,33 @@
 <resources>
     <string name="app_name">imobiApp</string>
 
+    <string name="corretora">Corretoras</string>
     <string name="imoveis">Imóveis</string>
+
     <string name="login">Login</string>
+    <string name="senha">Senha</string>
+    <string name="email">Email</string>
     <string name="entrar">Entrar</string>
     <string name="sair">Sair</string>
 
     <string name="cadastrar">Cadastrar</string>
     <string name="atualizar">Atualizar</string>
+    <string name="deletar">Excluir</string>
     <string name="listar">Listar</string>
+    <string name="title_activity_listar">ListarActivity</string>
+
+    <!-- atributos de imoveis -->
+    <string name="descricao">Descrição</string>
+    <string name="preco">Preço</string>
+    <string name="cidade">Cidade</string>
+    <string name="quartos">Quartos</string>
+    <string name="comodos">Cômodos</string>
+    <string name="banheiros">Banheiros</string>
+    <string name="tipo">Tipo</string>
+    <string name="status">Corretora</string>
+
+    <!-- atributos de corretoras -->
+    <string name="nome">Nome</string>
+    <string name="telefone">Telefone</string>
+    <string name="cnpj">CNPJ</string>
 </resources>

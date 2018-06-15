@@ -5,30 +5,32 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ffff"
-    tools:context=".MenuImobi">
+    tools:context=".MenuImobi"
+    tools:layout_editor_absoluteY="81dp">
 
     <ImageView
         android:id="@+id/imageView4"
-        android:layout_width="368dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/cadastrar"
+        app:layout_constraintBottom_toTopOf="@+id/alterar"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_imobiapp_logo" />
 
     <Button
-        android:id="@+id/atualizar"
+        android:id="@+id/alterar"
         android:layout_width="157dp"
         android:layout_height="wrap_content"
         android:background="@drawable/shape"
         android:text="@string/atualizar"
         android:textColor="@android:color/background_light"
-        app:layout_constraintBottom_toTopOf="@+id/listar"
+        app:layout_constraintBottom_toTopOf="@+id/excluir"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cadastrar" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/cadastrar"
+        app:layout_constraintTop_toBottomOf="@+id/imageView4" />
 
     <Button
         android:id="@+id/listar"
@@ -38,10 +40,10 @@
         android:text="@string/listar"
         android:textColor="@android:color/background_light"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintEnd_toStartOf="@+id/excluir"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/atualizar" />
+        app:layout_constraintTop_toBottomOf="@+id/cadastrar" />
 
     <Button
         android:id="@+id/cadastrar"
@@ -50,9 +52,22 @@
         android:background="@drawable/shape"
         android:text="@string/cadastrar"
         android:textColor="@android:color/background_light"
-        app:layout_constraintBottom_toTopOf="@+id/atualizar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintBottom_toTopOf="@+id/listar"
+        app:layout_constraintEnd_toStartOf="@+id/alterar"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+
+    <Button
+        android:id="@+id/excluir"
+        android:layout_width="157dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape"
+        android:text="@string/deletar"
+        android:textColor="@android:color/background_light"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/listar"
+        app:layout_constraintTop_toBottomOf="@+id/alterar" />
 </android.support.constraint.ConstraintLayout>

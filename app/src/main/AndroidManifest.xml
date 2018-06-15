@@ -9,16 +9,28 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SplashActivity" android:screenOrientation="portrait">
+        <activity
+            android:name=".SplashActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" android:screenOrientation="portrait" />
-        <activity android:name=".LoginActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".MenuImobi" android:screenOrientation="portrait"/>
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".LoginActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".MenuChooseActivity" />
+        <activity android:name=".Listar" />
+        <activity
+            android:name=".ListarActivity"
+            android:label="@string/title_activity_listar"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".CadastroImoveisActivity"></activity>
     </application>
 
 </manifest>
