@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">imobiApp</string>
 
+    <string name="corretora">Corretoras</string>
     <string name="imoveis">Imóveis</string>
     <string name="login">Login</string>
     <string name="entrar">Entrar</string>
@@ -8,5 +9,7 @@
 
     <string name="cadastrar">Cadastrar</string>
     <string name="atualizar">Atualizar</string>
+    <string name="deletar">Excluir</string>
     <string name="listar">Listar</string>
+    <string name="title_activity_listar">ListarActivity</string>
 </resources>
