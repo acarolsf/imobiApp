@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().hide();
 
         imoveis = (Button) findViewById(R.id.imoveis);
         login = (Button) findViewById(R.id.login);

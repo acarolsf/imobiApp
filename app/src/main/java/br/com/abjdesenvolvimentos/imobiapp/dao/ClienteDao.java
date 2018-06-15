@@ -3,7 +3,6 @@ package br.com.abjdesenvolvimentos.imobiapp.dao;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.widget.Toast;
 
 import java.sql.SQLException;
@@ -14,11 +13,11 @@ import br.com.abjdesenvolvimentos.imobiapp.dominio.Cliente;
 
 public class ClienteDao {
 
-    private Context context;
-    private DBHelper db = new DBHelper(context);
-    private SQLiteDatabase dbInstancia = null;
+    Context context = null;
+    DBHelper db = new DBHelper(context);
+    SQLiteDatabase dbInstancia = null;
 
-    public void salvar(Cliente cliente) throws SQLException {
+    void salvar(Cliente cliente) throws SQLException {
         // toda função sera preciso colocar o throws SQLException
 
         // sempre abrir e fechar o banco
@@ -32,7 +31,7 @@ public class ClienteDao {
         db.fecharDB();
     }
 
-    public ArrayList<String> listar () throws SQLException {
+    ArrayList<String> listar () throws SQLException {
         ArrayList<String> contatosList = new ArrayList<String>();
         SQLiteDatabase meuBanco = db.getReadableDatabase();
 
@@ -50,12 +49,13 @@ public class ClienteDao {
         return contatosList; // retornar o array list
     }
 
-    public void alterar (Cliente cliente) throws SQLException {
+    void alterar (Cliente cliente) throws SQLException {
 
     }
 
-    public void deletar (Cliente cliente) throws SQLException {
+    void deletar (Cliente cliente) throws SQLException {
 
 
     }
+
 }

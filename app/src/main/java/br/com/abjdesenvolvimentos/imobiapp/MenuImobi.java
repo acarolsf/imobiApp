@@ -14,6 +14,7 @@ public class MenuImobi extends AppCompatActivity {
         setContentView(R.layout.activity_menu_imobi);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
     }
     @Override
