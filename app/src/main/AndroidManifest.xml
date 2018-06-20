@@ -2,6 +2,18 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="br.com.abjdesenvolvimentos.imobiapp">
 
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+
+    <uses-feature
+        android:name="android.hardware.telephony"
+        android:required="false" />
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"></uses-permission>
+    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+
+    <uses-feature android:name="android.hardware.camera" android:required="false" />
+
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_imobiapp_logo"
@@ -21,16 +33,21 @@
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait" />
+
         <activity
             android:name=".LoginActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".MenuChooseActivity" />
-        <activity android:name=".Listar" />
         <activity
             android:name=".ListarActivity"
             android:label="@string/title_activity_listar"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".CadastroImoveisActivity"></activity>
+        <activity
+            android:name=".CadastroImoveisActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Cadastro_corretora" />
+        <activity android:name=".CadastroUsuarioActivity"></activity>
     </application>
 
 </manifest>

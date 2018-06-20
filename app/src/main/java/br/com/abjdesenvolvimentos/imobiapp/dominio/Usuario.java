@@ -6,6 +6,7 @@ public class Usuario {
     private int id;
     private String login;
     private String senha;
+    private String email;
 
     public int getId() {
         return id;
@@ -31,11 +32,20 @@ public class Usuario {
         this.senha = senha;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public ContentValues getContentValues() {
         ContentValues cv = new ContentValues();
 
         cv.put("login", this.login);
         cv.put("senha", this.senha);
+        cv.put("email", this.email);
 
         return cv;
     }

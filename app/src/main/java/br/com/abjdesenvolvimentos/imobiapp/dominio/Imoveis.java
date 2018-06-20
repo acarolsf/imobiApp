@@ -12,7 +12,8 @@ public class Imoveis {
     private int comodos;
     private String tipo;
     private String status;
-    private Corretora corretora;
+    private String corretora;
+    private byte[] foto;
 
     public int getId() {
         return id;
@@ -86,12 +87,20 @@ public class Imoveis {
         this.status = status;
     }
 
-    public Corretora getCorretora() {
+    public String getCorretora() {
         return corretora;
     }
 
-    public void setCorretora(Corretora corretora) {
+    public void setCorretora(String corretora) {
         this.corretora = corretora;
+    }
+
+    public byte[] getFoto() {
+        return foto;
+    }
+
+    public void setFoto(byte[] foto) {
+        this.foto = foto;
     }
 
     public ContentValues getContentValues() {
@@ -105,7 +114,9 @@ public class Imoveis {
         cv.put("banheiros", this.banheiros);
         cv.put("tipo", this.tipo);
         cv.put("status", this.status);
-        cv.put("id_corretora", this.corretora.getId());
+        cv.put("imagem", this.foto);
+        cv.put("corretora", this.corretora);
+
 
         return cv;
     }

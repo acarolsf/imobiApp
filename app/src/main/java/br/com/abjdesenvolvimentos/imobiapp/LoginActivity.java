@@ -13,11 +13,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 public class LoginActivity extends AppCompatActivity {
 
     private EditText usuario;
     private EditText senha;
+    private TextView cad_user;
     private Button entrar;
 
     @Override
@@ -28,6 +30,14 @@ public class LoginActivity extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
+        cad_user = (TextView) findViewById(R.id.cad_user);
+        cad_user.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(LoginActivity.this, CadastroUsuarioActivity.class);
+                startActivity(i);
+            }
+        });
         usuario = (EditText) findViewById(R.id.usuario);
         senha = (EditText) findViewById(R.id.senha);
         entrar = (Button) findViewById(R.id.salvar);

@@ -9,6 +9,7 @@ public class Corretora {
     private String telefone;
     private int cnpj;
     private String email;
+    private byte[] foto;
 
     public int getId() {
         return id;
@@ -58,6 +59,14 @@ public class Corretora {
         this.email = email;
     }
 
+    public byte[] getFoto() {
+        return foto;
+    }
+
+    public void setFoto(byte[] foto) {
+        this.foto = foto;
+    }
+
     public ContentValues getContentValues() {
         ContentValues cv = new ContentValues();
 
@@ -66,6 +75,7 @@ public class Corretora {
         cv.put("telefone", this.telefone);
         cv.put("cnpj", this.cnpj);
         cv.put("email", this.email);
+        cv.put("imagem", this.foto);
 
         return cv;
     }

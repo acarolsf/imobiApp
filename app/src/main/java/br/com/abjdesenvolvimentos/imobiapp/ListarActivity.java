@@ -1,5 +1,7 @@
 package br.com.abjdesenvolvimentos.imobiapp;
 
+import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -9,17 +11,23 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
 import br.com.abjdesenvolvimentos.imobiapp.dao.CorretoraDao;
 import br.com.abjdesenvolvimentos.imobiapp.dao.ImoveisDao;
+import br.com.abjdesenvolvimentos.imobiapp.dominio.Corretora;
+import br.com.abjdesenvolvimentos.imobiapp.dominio.Imoveis;
 
 public class ListarActivity extends AppCompatActivity {
 
     private ListView lista;
+    Imoveis imoveis;
+    Corretora corretora;
     ImoveisDao daoI = new ImoveisDao();
     CorretoraDao daoC = new CorretoraDao();
 
@@ -28,7 +36,7 @@ public class ListarActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listar);
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        // getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
@@ -38,17 +46,19 @@ public class ListarActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Cadastro", Snackbar.LENGTH_LONG)
-                        .setAction("Cadastrar", null).show();
-            }
-        });
-
         Bundle extra = getIntent().getExtras();
+
         if(extra != null){
+            if(extra.getString("main") != "main") {
+                FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+                fab.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Snackbar.make(view, "Cadastro", Snackbar.LENGTH_LONG)
+                                .setAction("Cadastrar", null).show();
+                    }
+                });
+            }
 
             if(extra.getString("key") == "c") {
                 //listar corretoras
@@ -58,30 +68,22 @@ public class ListarActivity extends AppCompatActivity {
                         android.R.layout.simple_list_item_1, corretoras);
 
                 lista.setAdapter(adapter);
-
             }
 
             if(extra.getString("key") == "i") {
-                if(extra.getString("main") == "main") {
-                    // lista sem as prioridades
-                    ArrayList<String> imoveis = daoI.listar();
+                ArrayList<String> imoveis = daoI.listar();
 
-                    final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                            android.R.layout.simple_list_item_1, imoveis);
+                final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                        android.R.layout.simple_list_item_1, imoveis);
 
-                    lista.setAdapter(adapter);
-
-                } else {
-                    // lista com as prioridades
-
-                    ArrayList<String> imoveis = daoI.listar();
-
-                    final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                            android.R.layout.simple_list_item_1, imoveis);
-
-                    lista.setAdapter(adapter);
-
-                }
+                lista.setAdapter(adapter);
+                lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                            Imoveis imovelSelecionado = (Imoveis) parent.getItemAtPosition(position);
+                            // Intent i = new Intent(ListarActivity.this, ExibirA)
+                            Toast.makeText(ListarActivity.this, imovelSelecionado.getDescricao() + "selecinado",Toast.LENGTH_SHORT).show(); }
+                    });
             }
         }
     }

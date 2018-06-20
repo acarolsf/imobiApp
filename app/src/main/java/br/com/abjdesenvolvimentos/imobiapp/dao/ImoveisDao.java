@@ -1,8 +1,10 @@
 package br.com.abjdesenvolvimentos.imobiapp.dao;
 
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.support.v7.app.AppCompatActivity;
 
 
 import java.util.ArrayList;
@@ -10,7 +12,7 @@ import java.util.ArrayList;
 import br.com.abjdesenvolvimentos.imobiapp.banco.DBHelper;
 import br.com.abjdesenvolvimentos.imobiapp.dominio.Imoveis;
 
-public class ImoveisDao extends SQLException {
+public class ImoveisDao extends SQLException{
 
     private DBHelper db;
     private SQLiteDatabase dbInstancia = null; // instancia que permite fazer os select, delete, updat
@@ -31,6 +33,7 @@ public class ImoveisDao extends SQLException {
 
 
     public ArrayList<String> listar() {
+
         ArrayList<String> imoveis = new ArrayList<String>();
         SQLiteDatabase meuBanco = db.getReadableDatabase();
 

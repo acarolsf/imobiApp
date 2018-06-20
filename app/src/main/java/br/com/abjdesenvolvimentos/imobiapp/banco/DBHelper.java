@@ -25,13 +25,13 @@ public class DBHelper extends SQLiteOpenHelper {
 
         // tabela de corretoras
         db.execSQL("CREATE TABLE corretora(id INTERGER PRIMARY KEY AUTOINCREMENT, nome TEXT, cidade TEXT, " +
-                "telefone TEXT, cnpj INTERGER, email TEXT)");
+                "telefone TEXT, cnpj INTERGER, email TEXT, imagem BLOB)");
 
         // tabela de imoveis
         db.execSQL("CREATE TABLE imoveis(id INTERGER PRIMARY KEY AUTOINCREMENT, descricao TEXT, " +
                 "preco DOUBLE, cidade TEXT, quartos INTERGER, comodos INTERGER, banheiros INTERGER, " +
-                "tipo TEXT, status TEXT, id_corretora INTERGER, " +
-                "FOREIGN KEY (id_corretora) REFERENCES corretora(id))");
+                "tipo TEXT, status TEXT, imagem BLOB, corretora TEXT, " +
+                "FOREIGN KEY (corretora) REFERENCES corretora(nome))");
     }
 
     @Override

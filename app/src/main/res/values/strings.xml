@@ -3,6 +3,8 @@
 
     <string name="corretora">Corretoras</string>
     <string name="imoveis">Imóveis</string>
+    <string name="salvar">Salvar</string>
+    <string name="cancelar">Cancelar</string>
 
     <string name="login">Login</string>
     <string name="senha">Senha</string>
@@ -24,10 +26,51 @@
     <string name="comodos">Cômodos</string>
     <string name="banheiros">Banheiros</string>
     <string name="tipo">Tipo</string>
-    <string name="status">Corretora</string>
+    <string name="status">Status</string>
+    <string name="corretoras">Corretora</string>
 
     <!-- atributos de corretoras -->
     <string name="nome">Nome</string>
     <string name="telefone">Telefone</string>
     <string name="cnpj">CNPJ</string>
+
+    <!-- spinner -->
+    <string-array name="cities_array">
+        <item>Selecione</item>
+        <item>Caicó</item>
+        <item>Jardim do Seridó</item>
+        <item>Acari</item>
+        <item>Currais Novos</item>
+        <item>Natal</item>
+        <item>Parnamirim</item>
+        <item>Mossoró</item>
+    </string-array>
+
+    <string-array name="numbers">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+    </string-array>
+
+    <string-array name="status_array">
+        <item>Selecione</item>
+        <item>Disponível</item>
+        <item>Vendido</item>
+    </string-array>
+
+    <string-array name="array_corretoras">
+        <item>Selecione</item>
+    </string-array>
+
+    <string name="cad_corretora">Cadastro Corretora</string>
+    <string name="cad_imoveis">Cadastro Imoveis</string>
+    <string name="cad_usuario">Cadastro Usuário</string>
 </resources>
