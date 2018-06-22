@@ -46,13 +46,13 @@ public class CadastroCorretoraActivity extends AppCompatActivity {
         foto = (ImageView) findViewById(R.id.foto_c);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Escolha uma imagem", Snackbar.LENGTH_LONG)
-                        .setAction("Escolher uma imagem", null).show();
-            }
-        });
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Snackbar.make(view, "Escolha uma imagem", Snackbar.LENGTH_LONG)
+//                        .setAction("Escolher uma imagem", null).show();
+//            }
+//        });
 
 
         Bitmap bitmap = ((BitmapDrawable)foto.getDrawable()).getBitmap();
@@ -79,7 +79,7 @@ public class CadastroCorretoraActivity extends AppCompatActivity {
                 corretora.setTelefone(telefone.getText().toString());
                 corretora.setCnpj(Integer.parseInt(cnpj.getText().toString()));
                 corretora.setEmail(email.getText().toString());
-                corretora.setFoto(img);
+                //corretora.setFoto(img);
                 dao.salvar(corretora);
                 finish();
             }

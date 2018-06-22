@@ -31,8 +31,9 @@ public class MenuChooseActivity extends AppCompatActivity {
         corretoras.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(MenuChooseActivity.this, ListarActivity.class);
-                i.putExtra("key", "c");
+                Intent i = new Intent(MenuChooseActivity.this, ListaCorretoraActivity.class);
+                // i.putExtra("key", "c");
+                // i.putExtra("main", "notMain");
                 startActivity(i);
             }
         });
@@ -41,8 +42,9 @@ public class MenuChooseActivity extends AppCompatActivity {
         imoveis.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(MenuChooseActivity.this, ListarActivity.class);
-                i.putExtra("key", "i");
+                Intent i = new Intent(MenuChooseActivity.this, ListaImoveisActivity.class);
+//                i.putExtra("key", "i");
+//                i.putExtra("main", "notMain");
                 startActivity(i);
             }
         });

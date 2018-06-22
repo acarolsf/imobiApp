@@ -27,23 +27,17 @@
                 tools:layout_editor_absoluteX="0dp"
                 tools:layout_editor_absoluteY="7dp" />
 
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/fab"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                app:srcCompat="@drawable/ic_add_white" />
+
             <include layout="@layout/content_form_imoveis" />
+
         </LinearLayout>
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/add_imageI"
-            android:layout_width="42dp"
-            android:layout_height="93dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="128dp"
-            android:src="@drawable/ic_add_white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+
     </ScrollView>
 
 </android.support.constraint.ConstraintLayout>

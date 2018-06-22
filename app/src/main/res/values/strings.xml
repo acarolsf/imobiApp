@@ -73,4 +73,6 @@
     <string name="cad_corretora">Cadastro Corretora</string>
     <string name="cad_imoveis">Cadastro Imoveis</string>
     <string name="cad_usuario">Cadastro Usuário</string>
+    <string name="title_activity_lista_corretora">ListaCorretoraActivity</string>
+    <string name="title_activity_lista_imoveis">ListaImoveisActivity</string>
 </resources>

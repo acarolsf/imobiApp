@@ -30,8 +30,8 @@ public class CadastroImoveisActivity extends AppCompatActivity {
     private EditText corretora;
     private Button cancelar;
     private Button salvar;
+    private Imoveis imovel;
     private ImoveisDao dao;
-    Resources res = getResources();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +61,7 @@ public class CadastroImoveisActivity extends AppCompatActivity {
         salvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Imoveis imovel = new Imoveis();
+                imovel = new Imoveis();
                 dao = new ImoveisDao();
                 imovel.setDescricao(descricao.getText().toString());
                 imovel.setPreco(Double.parseDouble(preco.getText().toString()));
@@ -73,10 +73,7 @@ public class CadastroImoveisActivity extends AppCompatActivity {
                 imovel.setTipo(tipo.getText().toString());
                 imovel.setCorretora(corretora.getText().toString());
                 dao.salvar(imovel);
-                Intent i = new Intent(CadastroImoveisActivity.this, ListarActivity.class);
-                i.putExtra("key", "i");
-                i.putExtra("main", "notMain");
-                startActivity(i);
+                finish();
             }
         });
     }

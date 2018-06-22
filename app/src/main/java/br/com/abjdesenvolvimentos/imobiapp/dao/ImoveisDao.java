@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import br.com.abjdesenvolvimentos.imobiapp.banco.DBHelper;
 import br.com.abjdesenvolvimentos.imobiapp.dominio.Imoveis;
@@ -31,24 +32,89 @@ public class ImoveisDao extends SQLException{
         db.fecharDB();
     }
 
+    public ArrayList<HashMap<String, String>> listar() throws SQLException {
+        try {
+            db.abrirDB();
 
-    public ArrayList<String> listar() {
+            ArrayList<HashMap<String, String>> imoveisList = new ArrayList<>();
+            SQLiteDatabase meuBanco = db.getReadableDatabase();
 
-        ArrayList<String> imoveis = new ArrayList<String>();
-        SQLiteDatabase meuBanco = db.getReadableDatabase();
+            String query = "SELECT descricao, preco, cidade, quartos, banheiros, comodos, tipo," +
+                    "status, corretora, imagem FROM imoveis ORDER BY nome";
+            Cursor cursor = meuBanco.rawQuery(query, null);
 
-        Cursor minhaConsulta = meuBanco.rawQuery("SELECT descricao FROM imoveis ORDER BY preco", null);
+            while (cursor.moveToNext()){
+                HashMap<String,String> imoveis = new HashMap<>();
+                imoveis.put("descricao",cursor.getString(cursor.getColumnIndex("descricao")));
+                imoveis.put("preco", cursor.getString(cursor.getColumnIndex("preco")));
+                imoveis.put("cidade",cursor.getString(cursor.getColumnIndex("cidade")));
+                imoveis.put("quartos",cursor.getString(cursor.getColumnIndex("quartos")));
+                imoveis.put("banheiros", cursor.getString(cursor.getColumnIndex("banheiros")));
+                imoveis.put("comodos", cursor.getString(cursor.getColumnIndex("comodos")));
+                imoveis.put("tipo", cursor.getString(cursor.getColumnIndex("tipo")));
+                imoveis.put("status", cursor.getString(cursor.getColumnIndex("status")));
+                imoveis.put("corretora", cursor.getString(cursor.getColumnIndex("corretora")));
+                imoveis.put("imagem", cursor.getString(cursor.getColumnIndex("imagem")));
 
-        minhaConsulta.moveToFirst();
+                imoveisList.add(imoveis);
+            }
 
-        while (! minhaConsulta.isAfterLast()) {
-            imoveis.add(minhaConsulta.getString(0));
-            minhaConsulta.moveToNext();
+            db.fecharDB();
+            return imoveisList;
+        }catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
-        meuBanco.close(); // fechar o banco
-        minhaConsulta.close(); //fechar a consulta
-        return imoveis; // retornar o array list
     }
+
+    public void delete(int id) throws SQLException {
+
+        try {
+            db.abrirDB();
+
+            // SQLiteDatabase meuBanco = db.getReadableDatabase();
+            dbInstancia.delete("imoveis", id+"= ?", new String[]{String.valueOf(id)});
+
+            db.fecharDB();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void update(Imoveis imoveis) throws SQLException {
+
+        try {
+            db.abrirDB();
+
+            dbInstancia.update("corretoras", imoveis.getContentValues(),
+                    imoveis.getId()+"=?", new String[]{String.valueOf(imoveis.getId())});
+
+            db.fecharDB();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+//    public ArrayList<String> listar() throws SQLException {
+//
+//
+//        ArrayList<String> imoveis = null;
+//        SQLiteDatabase meuBanco = db.getReadableDatabase();
+//
+//        Cursor minhaConsulta = meuBanco.rawQuery("SELECT descricao FROM imoveis ORDER BY preco", null);
+//
+//        minhaConsulta.moveToFirst();
+//
+//        while (! minhaConsulta.isAfterLast()) {
+//            imoveis.add(minhaConsulta.getString(0));
+//            minhaConsulta.moveToNext();
+//        }
+//        meuBanco.close(); // fechar o banco
+//        minhaConsulta.close(); //fechar a consulta
+//        return imoveis; // retornar o array list
+//    }
 
 
 
