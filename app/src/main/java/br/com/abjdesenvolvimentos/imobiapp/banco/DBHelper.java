@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DBHelper extends SQLiteOpenHelper {
 
     private static final String NOME_BANCO = "db_imobiapp.db";
-    private static final int VERSAO_BANCO = 1;
+    private static final int VERSAO_BANCO = 2;
     private Context context;
     private SQLiteDatabase dbInstancia = null;
 
@@ -23,15 +23,10 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE usarios(id INTERGER PRIMARY KEY AUTOINCREMENT, login TEXT, senha TEXT, " +
                 "email TEXT)");
 
-        // tabela de corretoras
-        db.execSQL("CREATE TABLE corretora(id INTERGER PRIMARY KEY AUTOINCREMENT, nome TEXT, cidade TEXT, " +
-                "telefone TEXT, cnpj INTERGER, email TEXT, imagem BLOB)");
-
         // tabela de imoveis
         db.execSQL("CREATE TABLE imoveis(id INTERGER PRIMARY KEY AUTOINCREMENT, descricao TEXT, " +
                 "preco DOUBLE, cidade TEXT, quartos INTERGER, comodos INTERGER, banheiros INTERGER, " +
-                "tipo TEXT, status TEXT, imagem BLOB, corretora TEXT, " +
-                "FOREIGN KEY (corretora) REFERENCES corretora(nome))");
+                "tipo TEXT, status TEXT, imagem BLOB, corretora TEXT, telefone TEXT)");
     }
 
     @Override
@@ -39,7 +34,6 @@ public class DBHelper extends SQLiteOpenHelper {
 
         db.execSQL("DROP TABLE IF EXISTS usuarios");
         db.execSQL("DROP TABLE IF EXISTS imoveis");
-        db.execSQL("DROP TABLE IF EXISTS corretora");
         onCreate(db);
     }
 

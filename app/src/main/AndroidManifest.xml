@@ -42,12 +42,7 @@
             android:name=".CadastroImoveisActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".CadastroCorretoraActivity" />
         <activity android:name=".CadastroUsuarioActivity" />
-        <activity
-            android:name=".ListaCorretoraActivity"
-            android:label="@string/title_activity_lista_corretora"
-            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ListaImoveisActivity"
             android:label="@string/title_activity_lista_imoveis"
