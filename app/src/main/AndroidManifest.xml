@@ -37,7 +37,6 @@
         <activity
             android:name=".LoginActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".MenuChooseActivity" />
         <activity
             android:name=".CadastroImoveisActivity"
             android:screenOrientation="portrait"

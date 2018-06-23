@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DBHelper extends SQLiteOpenHelper {
 
     private static final String NOME_BANCO = "db_imobiapp.db";
-    private static final int VERSAO_BANCO = 2;
+    private static final int VERSAO_BANCO = 3;
     private Context context;
     private SQLiteDatabase dbInstancia = null;
 
@@ -20,7 +20,7 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         // tabela de usuarios
-        db.execSQL("CREATE TABLE usarios(id INTERGER PRIMARY KEY AUTOINCREMENT, login TEXT, senha TEXT, " +
+        db.execSQL("CREATE TABLE usuarios(id INTERGER PRIMARY KEY AUTOINCREMENT, login TEXT, senha TEXT, " +
                 "email TEXT)");
 
         // tabela de imoveis

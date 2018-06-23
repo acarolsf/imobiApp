@@ -38,7 +38,7 @@ public class CadastroImoveisActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro_imoveis);
         getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setTitle(R.string.cad_imoveis);
+
 
         descricao = (EditText) findViewById(R.id.descricao_txt);
         preco = (EditText) findViewById(R.id.preco_txt);
@@ -62,7 +62,6 @@ public class CadastroImoveisActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 imovel = new Imoveis();
-                dao = new ImoveisDao();
                 imovel.setDescricao(descricao.getText().toString());
                 imovel.setPreco(Double.parseDouble(preco.getText().toString()));
                 imovel.setCidade(cidades.getSelectedItem().toString());

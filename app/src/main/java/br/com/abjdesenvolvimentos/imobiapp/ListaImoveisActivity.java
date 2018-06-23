@@ -16,22 +16,26 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import br.com.abjdesenvolvimentos.imobiapp.dao.ImoveisDao;
+import br.com.abjdesenvolvimentos.imobiapp.adapter.AdapterImovel;
 import br.com.abjdesenvolvimentos.imobiapp.dominio.Imoveis;
 
 public class ListaImoveisActivity extends AppCompatActivity {
 
     private ListView lista;
-    Imoveis imoveis;
-    FloatingActionButton fab;
-    ImoveisDao daoI = new ImoveisDao();
+    private Imoveis imoveis;
+    private FloatingActionButton fab;
+    private ImoveisDao dao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_imoveis);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        dao = new ImoveisDao();
+        lista = (ListView) findViewById(R.id.lista);
         fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,7 +46,12 @@ public class ListaImoveisActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
-        ArrayList<HashMap<String, String>> imoveis = daoI.listar();
+        ArrayList<HashMap<String, String>> imoveis = dao.listar();
+
+        if(imoveis == null) {
+            Intent i = new Intent (ListaImoveisActivity.this, CadastroImoveisActivity.class);
+            startActivity(i);
+        }
 
         final ArrayAdapter<HashMap<String, String>> adapter = new ArrayAdapter<HashMap<String, String>>(this,
                 android.R.layout.simple_list_item_1, imoveis);

@@ -26,9 +26,7 @@ public class MainActivity extends AppCompatActivity  {
         imoveis.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(MainActivity.this, CadastroImoveisActivity.class);
-                // i.putExtra("key", "i");
-                // i.putExtra("main", "main");
+                Intent i = new Intent(MainActivity.this, ListaImoveisActivity.class);
                 startActivity(i);
             }
         });

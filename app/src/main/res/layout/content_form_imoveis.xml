@@ -115,6 +115,14 @@
                 tools:layout_editor_absoluteY="243dp" />
 
             <TextView
+                android:id="@+id/telefone"
+                android:layout_width="match_parent"
+                android:layout_height="39dp"
+                android:padding="8dp"
+                android:text="@string/telefone"
+                android:textSize="18sp" />
+
+            <TextView
                 android:id="@+id/textView10"
                 android:layout_width="match_parent"
                 android:layout_height="39dp"
@@ -214,6 +222,14 @@
                 app:layout_constraintStart_toEndOf="@+id/textView9"
                 app:layout_constraintTop_toTopOf="@+id/textView9"
                 app:layout_constraintVertical_bias="1.0" />
+
+            <EditText
+                android:id="@+id/telefone_txt"
+                android:layout_width="match_parent"
+                android:layout_height="39dp"
+                android:ems="10"
+                android:inputType="phone"
+                android:singleLine="true" />
 
             <Spinner
                 android:id="@+id/comodos_txt"

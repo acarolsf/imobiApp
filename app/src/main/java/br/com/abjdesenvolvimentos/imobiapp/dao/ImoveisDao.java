@@ -33,14 +33,14 @@ public class ImoveisDao extends SQLException{
     }
 
     public ArrayList<HashMap<String, String>> listar() throws SQLException {
+        ArrayList<HashMap<String, String>> imoveisList = new ArrayList<HashMap<String, String>>();
         try {
             db.abrirDB();
 
-            ArrayList<HashMap<String, String>> imoveisList = new ArrayList<>();
             SQLiteDatabase meuBanco = db.getReadableDatabase();
 
             String query = "SELECT descricao, preco, cidade, quartos, banheiros, comodos, tipo," +
-                    "status, corretora, imagem FROM imoveis ORDER BY nome";
+                    "status, corretora, telefone, imagem FROM imoveis ORDER BY nome";
             Cursor cursor = meuBanco.rawQuery(query, null);
 
             while (cursor.moveToNext()){
@@ -54,17 +54,18 @@ public class ImoveisDao extends SQLException{
                 imoveis.put("tipo", cursor.getString(cursor.getColumnIndex("tipo")));
                 imoveis.put("status", cursor.getString(cursor.getColumnIndex("status")));
                 imoveis.put("corretora", cursor.getString(cursor.getColumnIndex("corretora")));
+                imoveis.put("telefone", cursor.getString(cursor.getColumnIndex("telefone")));
                 imoveis.put("imagem", cursor.getString(cursor.getColumnIndex("imagem")));
 
                 imoveisList.add(imoveis);
             }
 
             db.fecharDB();
-            return imoveisList;
+
         }catch (Exception e) {
             e.printStackTrace();
-            return null;
         }
+        return imoveisList;
     }
 
     public void delete(int id) throws SQLException {
@@ -86,7 +87,7 @@ public class ImoveisDao extends SQLException{
         try {
             db.abrirDB();
 
-            dbInstancia.update("corretoras", imoveis.getContentValues(),
+            dbInstancia.update("imoveis", imoveis.getContentValues(),
                     imoveis.getId()+"=?", new String[]{String.valueOf(imoveis.getId())});
 
             db.fecharDB();

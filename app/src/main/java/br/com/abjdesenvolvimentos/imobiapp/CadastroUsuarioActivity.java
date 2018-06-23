@@ -18,8 +18,8 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
     private EditText email;
     private Button cancelar;
     private Button salvar;
-
-    UsuarioDao dao;
+    private Usuario user;
+    private UsuarioDao dao;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,7 +43,7 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
         salvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Usuario user = new Usuario();
+                user = new Usuario();
                 user.setLogin(login.getText().toString());
                 user.setSenha(senha.getText().toString());
                 user.setEmail(email.getText().toString());

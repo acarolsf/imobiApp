@@ -13,6 +13,7 @@ public class Imoveis {
     private String tipo;
     private String status;
     private String corretora;
+    private String telefone;
     private byte[] foto;
 
     public int getId() {
@@ -103,6 +104,14 @@ public class Imoveis {
         this.foto = foto;
     }
 
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
     public ContentValues getContentValues() {
         ContentValues cv = new ContentValues();
 
@@ -116,6 +125,7 @@ public class Imoveis {
         cv.put("status", this.status);
         cv.put("imagem", this.foto);
         cv.put("corretora", this.corretora);
+        cv.put("telefone", this.telefone);
 
 
         return cv;

@@ -44,7 +44,7 @@ public class LoginActivity extends AppCompatActivity {
         entrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(LoginActivity.this, MenuChooseActivity.class);
+                Intent i = new Intent(LoginActivity.this, ListaImoveisActivity.class);
                 startActivity(i);
             }
         });
@@ -58,9 +58,7 @@ public class LoginActivity extends AppCompatActivity {
     public void salvarLogin(View view) {
 
         SharedPreferences settings = getPreferences(Activity.MODE_PRIVATE);
-
         SharedPreferences.Editor editor = settings.edit();
-
 
         editor.putString("usuario", usuario.getText().toString());
         editor.putString("senha", senha.getText().toString());
