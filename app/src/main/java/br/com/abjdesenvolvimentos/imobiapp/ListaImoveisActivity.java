@@ -48,11 +48,6 @@ public class ListaImoveisActivity extends AppCompatActivity {
         });
         ArrayList<HashMap<String, String>> imoveis = dao.listar();
 
-        if(imoveis == null) {
-            Intent i = new Intent (ListaImoveisActivity.this, CadastroImoveisActivity.class);
-            startActivity(i);
-        }
-
         final ArrayAdapter<HashMap<String, String>> adapter = new ArrayAdapter<HashMap<String, String>>(this,
                 android.R.layout.simple_list_item_1, imoveis);
 

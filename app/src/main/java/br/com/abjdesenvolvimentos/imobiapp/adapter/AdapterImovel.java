@@ -28,7 +28,6 @@ public class AdapterImovel extends ArrayAdapter<Imoveis> {
     public View getView(int position, View convertView, ViewGroup parent) {
 
         Imoveis imoveis;
-        ImageView fotoI_linha;
         TextView descricao_linha;
         TextView corretora_linha;
         TextView cidade_linha;
@@ -36,13 +35,10 @@ public class AdapterImovel extends ArrayAdapter<Imoveis> {
         TextView bath_linha;
         TextView comodo_linha;
         TextView preco_linha;
-        Bitmap raw;
-        byte [] fotoArray;
 
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View linha = inflater.inflate(R.layout.linha_imoveis, parent, false);
 
-        fotoI_linha = (ImageView) linha.findViewById(R.id.imageI_linha);
         descricao_linha = (TextView) linha.findViewById(R.id.descricao_linha);
         corretora_linha = (TextView) linha.findViewById(R.id.corretora_linha);
         cidade_linha = (TextView) linha.findViewById(R.id.cidade_linha);
@@ -60,12 +56,7 @@ public class AdapterImovel extends ArrayAdapter<Imoveis> {
         bath_linha.setText(imoveis.getBanheiros());
         comodo_linha.setText(imoveis.getComodos());
         preco_linha.setText(Double.toString(imoveis.getPreco()));
-        fotoArray = imoveis.getFoto();
 
-        if(fotoArray != null) {
-            raw = BitmapFactory.decodeByteArray(fotoArray, 0, fotoArray.length);
-            fotoI_linha.setImageBitmap(raw);
-        }
 
         return linha;
 

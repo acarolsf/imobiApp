@@ -14,7 +14,6 @@ public class Imoveis {
     private String status;
     private String corretora;
     private String telefone;
-    private byte[] foto;
 
     public int getId() {
         return id;
@@ -96,14 +95,6 @@ public class Imoveis {
         this.corretora = corretora;
     }
 
-    public byte[] getFoto() {
-        return foto;
-    }
-
-    public void setFoto(byte[] foto) {
-        this.foto = foto;
-    }
-
     public String getTelefone() {
         return telefone;
     }
@@ -123,7 +114,6 @@ public class Imoveis {
         cv.put("banheiros", this.banheiros);
         cv.put("tipo", this.tipo);
         cv.put("status", this.status);
-        cv.put("imagem", this.foto);
         cv.put("corretora", this.corretora);
         cv.put("telefone", this.telefone);
 

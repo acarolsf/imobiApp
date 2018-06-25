@@ -1,18 +1,17 @@
 package br.com.abjdesenvolvimentos.imobiapp;
 
-import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.res.Resources;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Toast;
+
+import java.io.FileOutputStream;
 
 import br.com.abjdesenvolvimentos.imobiapp.dao.ImoveisDao;
 import br.com.abjdesenvolvimentos.imobiapp.dominio.Imoveis;
@@ -37,7 +36,7 @@ public class CadastroImoveisActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro_imoveis);
-        getSupportActionBar().setHomeButtonEnabled(true);
+        // getSupportActionBar().setHomeButtonEnabled(true);
 
 
         descricao = (EditText) findViewById(R.id.descricao_txt);

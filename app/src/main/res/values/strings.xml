@@ -1,7 +1,6 @@
 <resources>
     <string name="app_name">imobiApp</string>
 
-    <string name="corretora">Corretoras</string>
     <string name="imoveis">Imóveis</string>
     <string name="salvar">Salvar</string>
     <string name="cancelar">Cancelar</string>
@@ -12,10 +11,6 @@
     <string name="entrar">Entrar</string>
     <string name="sair">Sair</string>
 
-    <string name="cadastrar">Cadastrar</string>
-    <string name="atualizar">Atualizar</string>
-    <string name="deletar">Excluir</string>
-    <string name="listar">Listar</string>
     <string name="title_activity_listar">ListarActivity</string>
 
     <!-- atributos de imoveis -->
@@ -30,9 +25,7 @@
     <string name="corretoras">Corretora</string>
 
     <!-- atributos de corretoras -->
-    <string name="nome">Nome</string>
     <string name="telefone">Telefone</string>
-    <string name="cnpj">CNPJ</string>
 
     <!-- spinner -->
     <string-array name="cities_array">
@@ -66,11 +59,9 @@
         <item>Vendido</item>
     </string-array>
 
-    <string-array name="array_corretoras">
-        <item>Selecione</item>
-    </string-array>
+    <string name="call">Ligar</string>
+    <string name="sobre">App de Imoveis</string>
 
-    <string name="cad_corretora">Cadastro Corretora</string>
     <string name="cad_imoveis">Cadastro Imoveis</string>
     <string name="cad_usuario">Cadastro Usuário</string>
     <string name="title_activity_lista_corretora">ListaCorretoraActivity</string>

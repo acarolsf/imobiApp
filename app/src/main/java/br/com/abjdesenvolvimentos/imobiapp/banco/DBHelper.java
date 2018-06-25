@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DBHelper extends SQLiteOpenHelper {
 
     private static final String NOME_BANCO = "db_imobiapp.db";
-    private static final int VERSAO_BANCO = 3;
+    private static final int VERSAO_BANCO = 4;
     private Context context;
     private SQLiteDatabase dbInstancia = null;
 
@@ -26,7 +26,7 @@ public class DBHelper extends SQLiteOpenHelper {
         // tabela de imoveis
         db.execSQL("CREATE TABLE imoveis(id INTERGER PRIMARY KEY AUTOINCREMENT, descricao TEXT, " +
                 "preco DOUBLE, cidade TEXT, quartos INTERGER, comodos INTERGER, banheiros INTERGER, " +
-                "tipo TEXT, status TEXT, imagem BLOB, corretora TEXT, telefone TEXT)");
+                "tipo TEXT, status TEXT, corretora TEXT, telefone TEXT)");
     }
 
     @Override
@@ -39,9 +39,10 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public void abrirDB() throws SQLException {
 
+        DBHelper db = new DBHelper(context);
         // verifica se o banco está aberto
         if (this.dbInstancia == null) {
-            this.dbInstancia = this.getWritableDatabase(); // só consegue salvar no banco se abrir para escrita
+            this.dbInstancia = db.getWritableDatabase(); // só consegue salvar no banco se abrir para escrita
         }
 
     }

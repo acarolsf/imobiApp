@@ -8,14 +8,15 @@
     android:layout_height="match_parent">
 
 
-        <ImageView
-            android:id="@+id/imageI_linha"
-            android:layout_width="79dp"
-            android:layout_height="122dp"
-            android:layout_weight="1"
-            app:srcCompat="@drawable/ic_imobiapp_logo"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="172dp" />
+    <ImageView
+        android:id="@+id/imageI_linha"
+        android:layout_width="118dp"
+        android:layout_height="122dp"
+        android:layout_weight="1"
+        android:background="@drawable/shape3"
+        app:srcCompat="@drawable/ic_imobiapp_logo"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="172dp" />
 
         <LinearLayout
             android:layout_width="211dp"
@@ -95,14 +96,14 @@
 
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/preco_linha"
-            android:layout_width="wrap_content"
-            android:layout_height="120dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="12459,00"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="18sp" />
+    <TextView
+        android:id="@+id/preco_linha"
+        android:layout_width="86dp"
+        android:layout_height="120dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="12459,00"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="18sp" />
 
     </LinearLayout>

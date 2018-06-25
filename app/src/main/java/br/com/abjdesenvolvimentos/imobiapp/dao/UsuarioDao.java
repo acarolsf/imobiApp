@@ -15,11 +15,13 @@ public class UsuarioDao extends SQLException {
         // toda função sera preciso colocar o throws SQLException
 
         // sempre abrir e fechar o banco
-        db.abrirDB();
+        //db.abrirDB();
+        dbInstancia = db.getWritableDatabase();
 
         // todas as classes precisam ter o content value para que haja contato com o banco
-        dbInstancia.insert("usuarios", null, usuario.getContentValues());
+        dbInstancia.insertOrThrow("usuarios", null, usuario.getContentValues());
 
-        db.fecharDB();
+        db.close();
+        //db.fecharDB();
     }
 }

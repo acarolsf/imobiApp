@@ -25,7 +25,7 @@ public class ImoveisDao extends SQLException{
         db.abrirDB();
 
         // todas as classes precisam ter o content value para que haja contato com o banco
-        dbInstancia.insert("imoveis", null, imoveis.getContentValues());
+        dbInstancia.insertOrThrow("imoveis", null, imoveis.getContentValues());
 
         // Toast.makeText(ListarActivity.class, imoveis.getDescricao() + "cadastrado", Toast.LENGTH_LONG).show();
 
@@ -40,7 +40,7 @@ public class ImoveisDao extends SQLException{
             SQLiteDatabase meuBanco = db.getReadableDatabase();
 
             String query = "SELECT descricao, preco, cidade, quartos, banheiros, comodos, tipo," +
-                    "status, corretora, telefone, imagem FROM imoveis ORDER BY nome";
+                    "status, corretora, telefone FROM imoveis ORDER BY nome";
             Cursor cursor = meuBanco.rawQuery(query, null);
 
             while (cursor.moveToNext()){
@@ -55,7 +55,6 @@ public class ImoveisDao extends SQLException{
                 imoveis.put("status", cursor.getString(cursor.getColumnIndex("status")));
                 imoveis.put("corretora", cursor.getString(cursor.getColumnIndex("corretora")));
                 imoveis.put("telefone", cursor.getString(cursor.getColumnIndex("telefone")));
-                imoveis.put("imagem", cursor.getString(cursor.getColumnIndex("imagem")));
 
                 imoveisList.add(imoveis);
             }
