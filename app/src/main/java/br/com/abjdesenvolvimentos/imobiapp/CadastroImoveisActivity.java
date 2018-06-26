@@ -1,9 +1,7 @@
 package br.com.abjdesenvolvimentos.imobiapp;
 
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -11,9 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
-import java.io.FileOutputStream;
-
-import br.com.abjdesenvolvimentos.imobiapp.dao.ImoveisDao;
+import br.com.abjdesenvolvimentos.imobiapp.banco.DBHelper;
 import br.com.abjdesenvolvimentos.imobiapp.dominio.Imoveis;
 
 public class CadastroImoveisActivity extends AppCompatActivity {
@@ -30,7 +26,7 @@ public class CadastroImoveisActivity extends AppCompatActivity {
     private Button cancelar;
     private Button salvar;
     private Imoveis imovel;
-    private ImoveisDao dao;
+    private DBHelper db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +34,7 @@ public class CadastroImoveisActivity extends AppCompatActivity {
         setContentView(R.layout.activity_cadastro_imoveis);
         // getSupportActionBar().setHomeButtonEnabled(true);
 
-
+        db = new DBHelper(this);
         descricao = (EditText) findViewById(R.id.descricao_txt);
         preco = (EditText) findViewById(R.id.preco_txt);
         cidades = (Spinner) findViewById(R.id.cidades_txt);
@@ -70,7 +66,7 @@ public class CadastroImoveisActivity extends AppCompatActivity {
                 imovel.setStatus(status.getSelectedItem().toString());
                 imovel.setTipo(tipo.getText().toString());
                 imovel.setCorretora(corretora.getText().toString());
-                dao.salvar(imovel);
+                db.salvarImoveis(imovel);
                 finish();
             }
         });

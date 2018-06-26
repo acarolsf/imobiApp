@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import br.com.abjdesenvolvimentos.imobiapp.dao.UsuarioDao;
+import br.com.abjdesenvolvimentos.imobiapp.banco.DBHelper;
 import br.com.abjdesenvolvimentos.imobiapp.dominio.Usuario;
 
 public class CadastroUsuarioActivity extends AppCompatActivity {
@@ -19,7 +19,7 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
     private Button cancelar;
     private Button salvar;
     private Usuario user;
-    private UsuarioDao dao;
+    private DBHelper db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,7 +27,7 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setTitle(R.string.cad_usuario);
 
-        dao = new UsuarioDao();
+        db = new DBHelper(this);
         login = (EditText) findViewById(R.id.loginU_txt);
         senha = (EditText) findViewById(R.id.pass_txt);
         email = (EditText) findViewById(R.id.emailU_txt);
@@ -47,7 +47,7 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
                 user.setLogin(login.getText().toString());
                 user.setSenha(senha.getText().toString());
                 user.setEmail(email.getText().toString());
-                dao.salvar(user);
+                db.salvarUsuario(user);
                 finish();
             }
         });

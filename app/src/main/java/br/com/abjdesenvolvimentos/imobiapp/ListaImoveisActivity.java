@@ -15,7 +15,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import br.com.abjdesenvolvimentos.imobiapp.dao.ImoveisDao;
+import br.com.abjdesenvolvimentos.imobiapp.banco.DBHelper;
 import br.com.abjdesenvolvimentos.imobiapp.adapter.AdapterImovel;
 import br.com.abjdesenvolvimentos.imobiapp.dominio.Imoveis;
 
@@ -24,7 +24,7 @@ public class ListaImoveisActivity extends AppCompatActivity {
     private ListView lista;
     private Imoveis imoveis;
     private FloatingActionButton fab;
-    private ImoveisDao dao;
+    private DBHelper db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +34,8 @@ public class ListaImoveisActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        dao = new ImoveisDao();
+        db = new DBHelper(this);
+
         lista = (ListView) findViewById(R.id.lista);
         fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -46,10 +47,11 @@ public class ListaImoveisActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
-        ArrayList<HashMap<String, String>> imoveis = dao.listar();
+        ArrayList<Imoveis> imoveis = db.listar();
 
-        final ArrayAdapter<HashMap<String, String>> adapter = new ArrayAdapter<HashMap<String, String>>(this,
-                android.R.layout.simple_list_item_1, imoveis);
+        final AdapterImovel adapter = new AdapterImovel(this, db.listar());
+        // final ArrayAdapter<HashMap<String, String>> adapter = new ArrayAdapter<HashMap<String, String>>(this,
+           //      android.R.layout.simple_list_item_1, imoveis);
 
         lista.setAdapter(adapter);
 
@@ -57,7 +59,9 @@ public class ListaImoveisActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Imoveis imovelSelecionado = (Imoveis) parent.getItemAtPosition(position);
-                // Intent i = new Intent(ListarActivity.this, ExibirImoveisActivity.class)
+                Intent i = new Intent(ListaImoveisActivity.this, ExibirActivity.class);
+                i.putExtra("imoveis", imovelSelecionado.getId());
+                startActivity(i);
                 Toast.makeText(ListaImoveisActivity.this, imovelSelecionado.getDescricao() + "selecinado",Toast.LENGTH_SHORT).show();
             }
         });

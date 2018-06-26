@@ -92,10 +92,10 @@ public class ExibirActivity extends AppCompatActivity {
             finish();
             return true;
         }
-//        if(id == R.id.menu_sobre){
-//            mensagemSobre();
-//            return true;
-//        }
+        if(id == R.id.sobre){
+            mensagemSobre();
+            return true;
+        }
         return super.onOptionsItemSelected(item);
     }
     public boolean onCreateOptionsMenu(Menu menu){
