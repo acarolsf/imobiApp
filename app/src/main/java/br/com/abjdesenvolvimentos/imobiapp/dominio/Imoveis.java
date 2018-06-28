@@ -111,11 +111,12 @@ public class Imoveis {
         cv.put("cidade", this.cidade);
         cv.put("quartos", this.quartos);
         cv.put("comodos", this.comodos);
+        cv.put("telefone", this.telefone);
         cv.put("banheiros", this.banheiros);
         cv.put("tipo", this.tipo);
         cv.put("status", this.status);
         cv.put("corretora", this.corretora);
-        cv.put("telefone", this.telefone);
+
 
 
         return cv;

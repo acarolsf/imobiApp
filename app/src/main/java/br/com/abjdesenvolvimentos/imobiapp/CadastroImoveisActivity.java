@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import br.com.abjdesenvolvimentos.imobiapp.banco.DBHelper;
 import br.com.abjdesenvolvimentos.imobiapp.dominio.Imoveis;
@@ -68,6 +69,7 @@ public class CadastroImoveisActivity extends AppCompatActivity {
                 imovel.setCorretora(corretora.getText().toString());
                 db.salvarImoveis(imovel);
                 finish();
+                Toast.makeText( CadastroImoveisActivity.this, "Imóvel cadastrado com sucesso!", Toast.LENGTH_SHORT).show();
             }
         });
     }

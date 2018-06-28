@@ -6,4 +6,29 @@
     android:layout_height="match_parent"
     tools:context=".EditarActivity">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/foto_i"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/cad_usuario"
+                app:srcCompat="@drawable/ic_imobiapp_logo"
+                tools:layout_editor_absoluteX="0dp"
+                tools:layout_editor_absoluteY="7dp" />
+
+            <include layout="@layout/content_form_imoveis" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
 </android.support.constraint.ConstraintLayout>

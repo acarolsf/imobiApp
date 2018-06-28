@@ -228,7 +228,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="39dp"
                 android:ems="10"
-                android:inputType="phone"
+                android:inputType="text"
                 android:singleLine="true" />
 
             <Spinner

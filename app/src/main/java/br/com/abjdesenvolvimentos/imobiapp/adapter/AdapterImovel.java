@@ -18,6 +18,14 @@ import br.com.abjdesenvolvimentos.imobiapp.dominio.Imoveis;
 public class AdapterImovel extends ArrayAdapter<Imoveis> {
     private Context context;
     private ArrayList<Imoveis> listaImoveis;
+    private Imoveis imoveis;
+    private TextView descricao_linha;
+    private TextView corretora_linha;
+    private TextView cidade_linha;
+    private TextView bed_linha;
+    private TextView bath_linha;
+    private TextView comodo_linha;
+    private TextView preco_linha;
 
     public AdapterImovel(Context context, ArrayList<Imoveis> listaImoveis) {
         super(context, R.layout.linha_imoveis, listaImoveis);
@@ -27,14 +35,7 @@ public class AdapterImovel extends ArrayAdapter<Imoveis> {
 
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        Imoveis imoveis;
-        TextView descricao_linha;
-        TextView corretora_linha;
-        TextView cidade_linha;
-        TextView bed_linha;
-        TextView bath_linha;
-        TextView comodo_linha;
-        TextView preco_linha;
+
 
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View linha = inflater.inflate(R.layout.linha_imoveis, parent, false);
@@ -52,9 +53,9 @@ public class AdapterImovel extends ArrayAdapter<Imoveis> {
         descricao_linha.setText(imoveis.getDescricao());
         corretora_linha.setText(imoveis.getCorretora());
         cidade_linha.setText(imoveis.getCidade());
-        bed_linha.setText(imoveis.getQuartos());
-        bath_linha.setText(imoveis.getBanheiros());
-        comodo_linha.setText(imoveis.getComodos());
+        bed_linha.setText(Integer.toString(imoveis.getQuartos()));
+        bath_linha.setText(Integer.toString(imoveis.getBanheiros()));
+        comodo_linha.setText(Integer.toString(imoveis.getComodos()));
         preco_linha.setText(Double.toString(imoveis.getPreco()));
 
 

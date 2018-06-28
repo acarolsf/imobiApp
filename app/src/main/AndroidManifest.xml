@@ -8,13 +8,6 @@
         android:name="android.hardware.telephony"
         android:required="false" />
 
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.INTERNET" />
-
-    <uses-feature
-        android:name="android.hardware.camera"
-        android:required="false" />
-
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_imobiapp_logo"
@@ -32,21 +25,18 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".LoginActivity"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".CadastroImoveisActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".CadastroUsuarioActivity" />
         <activity
             android:name=".ListaImoveisActivity"
             android:label="@string/title_activity_lista_imoveis"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".ExibirActivity"></activity>
+        <activity
+            android:name=".ExibirActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".EditarActivity"></activity>
     </application>
 
 </manifest>
