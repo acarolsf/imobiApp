@@ -5,18 +5,15 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
-import br.com.abjdesenvolvimentos.imobiapp.ListaImoveisActivity;
 import br.com.abjdesenvolvimentos.imobiapp.dominio.Imoveis;
 
 public class DBHelper extends SQLiteOpenHelper {
 
     private static final String NOME_BANCO = "db_imobiapp.db";
-    private static final int VERSAO_BANCO = 6;
+    private static final int VERSAO_BANCO = 10;
     private Context context;
     private SQLiteDatabase dbInstancia = null;
 
@@ -32,7 +29,8 @@ public class DBHelper extends SQLiteOpenHelper {
 //                "email TEXT)");
 
         // tabela de imoveis
-        db.execSQL("CREATE TABLE IF NOT EXISTS imoveis(id INTEGER PRIMARY KEY AUTOINCREMENT, descricao TEXT, " +
+        db.execSQL("CREATE TABLE imoveis(id INTEGER PRIMARY KEY AUTOINCREMENT" +
+                ", descricao TEXT, " +
                 "preco DOUBLE, cidade TEXT, quartos INTERGER, comodos INTERGER, banheiros INTERGER, " +
                 "tipo TEXT, status TEXT, corretora TEXT, telefone TEXT)");
     }
@@ -63,15 +61,13 @@ public class DBHelper extends SQLiteOpenHelper {
     public void salvarImoveis(Imoveis imoveis) throws SQLException {
         // toda função sera preciso colocar o throws SQLException
 
-        // sempre abrir e fechar o banco
         abrirDB();
 
         // todas as classes precisam ter o content value para que haja contato com o banco
         dbInstancia.insertOrThrow("imoveis", null, imoveis.getContentValues());
 
-        // Toast.makeText(ListarActivity.class, imoveis.getDescricao() + "cadastrado", Toast.LENGTH_LONG).show();
-
-        fecharDB();
+        //fecharDB();, não estou fechando pois deu erro no re-open, então no final da aplicação, portanto,
+        // quando eu pergunto se o usuário quer fechar o arquivo, eu fecho o banco.
     }
 
 
@@ -79,21 +75,16 @@ public class DBHelper extends SQLiteOpenHelper {
 
             abrirDB();
 
-            // SQLiteDatabase meuBanco = db.getReadableDatabase();
-            dbInstancia.delete("imoveis", id+"= ?", new String[]{String.valueOf(id)});
+            dbInstancia.execSQL("DELETE FROM imoveis WHERE id=" + id );
 
-            System.out.println("ESSA PORCARIA ESTÁ FUNCIONANDO");
-            fecharDB();
     }
 
     public void updateImoveis(Imoveis imoveis) throws SQLException {
 
             abrirDB();
-
             dbInstancia.update("imoveis", imoveis.getContentValues(),
                     imoveis.getId()+"=?", new String[]{String.valueOf(imoveis.getId())});
 
-            fecharDB();
     }
 
 
@@ -104,22 +95,24 @@ public class DBHelper extends SQLiteOpenHelper {
 
         Cursor c = meuBanco.rawQuery("SELECT * FROM imoveis ORDER BY preco", null);
 
-        if(c.moveToFirst()) {
-            do {
+        c.moveToFirst();
+        while(!c.isAfterLast()) {
 
-                Imoveis im = new Imoveis();
-                im.setDescricao(c.getString(c.getColumnIndex("descricao")));
-                im.setPreco(c.getDouble(c.getColumnIndex("preco")));
-                im.setCidade(c.getString(c.getColumnIndex("cidade")));
-                im.setQuartos(c.getInt(c.getColumnIndex("quartos")));
-                im.setBanheiros(c.getInt(c.getColumnIndex("banheiros")));
-                im.setComodos(c.getInt(c.getColumnIndex("comodos")));
-                im.setTipo(c.getString(c.getColumnIndex("tipo")));
-                im.setStatus(c.getString(c.getColumnIndex("status")));
-                im.setCorretora(c.getString(c.getColumnIndex("corretora")));
-                im.setTelefone(c.getString(c.getColumnIndex("telefone")));
-                imoveis.add(im);
-            } while (c.moveToNext());
+            Imoveis im = new Imoveis();
+            im.setId(c.getInt(c.getColumnIndex("id")));
+            im.setDescricao(c.getString(c.getColumnIndex("descricao")));
+            im.setPreco(c.getDouble(c.getColumnIndex("preco")));
+            im.setCidade(c.getString(c.getColumnIndex("cidade")));
+            im.setQuartos(c.getInt(c.getColumnIndex("quartos")));
+            im.setBanheiros(c.getInt(c.getColumnIndex("banheiros")));
+            im.setComodos(c.getInt(c.getColumnIndex("comodos")));
+            im.setTipo(c.getString(c.getColumnIndex("tipo")));
+            im.setStatus(c.getString(c.getColumnIndex("status")));
+            im.setCorretora(c.getString(c.getColumnIndex("corretora")));
+            im.setTelefone(c.getString(c.getColumnIndex("telefone")));
+            imoveis.add(im);
+
+            c.moveToNext();
         }
 
 

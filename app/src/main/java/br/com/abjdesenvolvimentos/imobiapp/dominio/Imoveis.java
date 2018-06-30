@@ -106,6 +106,7 @@ public class Imoveis {
     public ContentValues getContentValues() {
         ContentValues cv = new ContentValues();
 
+        //cv.put("id",this.id);
         cv.put("descricao", this.descricao);
         cv.put("preco", this.preco);
         cv.put("cidade", this.cidade);
@@ -117,7 +118,23 @@ public class Imoveis {
         cv.put("status", this.status);
         cv.put("corretora", this.corretora);
 
+        return cv;
+    }
 
+    public ContentValues alterate() {
+        ContentValues cv = new ContentValues();
+
+        cv.put("id",this.id);
+        cv.put("descricao", this.descricao);
+        cv.put("preco", this.preco);
+        cv.put("cidade", this.cidade);
+        cv.put("quartos", this.quartos);
+        cv.put("comodos", this.comodos);
+        cv.put("telefone", this.telefone);
+        cv.put("banheiros", this.banheiros);
+        cv.put("tipo", this.tipo);
+        cv.put("status", this.status);
+        cv.put("corretora", this.corretora);
 
         return cv;
     }

@@ -1,13 +1,10 @@
 package br.com.abjdesenvolvimentos.imobiapp.adapter;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -35,8 +32,6 @@ public class AdapterImovel extends ArrayAdapter<Imoveis> {
 
     public View getView(int position, View convertView, ViewGroup parent) {
 
-
-
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View linha = inflater.inflate(R.layout.linha_imoveis, parent, false);
 
@@ -57,7 +52,6 @@ public class AdapterImovel extends ArrayAdapter<Imoveis> {
         bath_linha.setText(Integer.toString(imoveis.getBanheiros()));
         comodo_linha.setText(Integer.toString(imoveis.getComodos()));
         preco_linha.setText(Double.toString(imoveis.getPreco()));
-
 
         return linha;
 

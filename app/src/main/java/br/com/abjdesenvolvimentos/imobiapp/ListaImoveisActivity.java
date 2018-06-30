@@ -7,14 +7,9 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.SearchView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -26,8 +21,6 @@ import br.com.abjdesenvolvimentos.imobiapp.dominio.Imoveis;
 public class ListaImoveisActivity extends AppCompatActivity{
 
     private ListView lista;
-    private Toolbar toolbar;
-    private Imoveis imovelSelecionado;
     private FloatingActionButton fab;
     private DBHelper db;
 
@@ -42,15 +35,12 @@ public class ListaImoveisActivity extends AppCompatActivity{
     }
 
     public void configuraBotoes() {
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
         lista = (ListView) findViewById(R.id.lista);
         fab = (FloatingActionButton) findViewById(R.id.fab);
 
     }
 
     public void atualizaLista() {
-
-        setSupportActionBar(toolbar);
 
         db = new DBHelper(this);
 
@@ -63,7 +53,7 @@ public class ListaImoveisActivity extends AppCompatActivity{
                 startActivity(i);
                 }
         });
-        ArrayList<Imoveis> imoveis = db.listar();
+        final ArrayList<Imoveis> imoveis = db.listar();
 
         final AdapterImovel adapter = new AdapterImovel(this, imoveis);
 
@@ -71,23 +61,25 @@ public class ListaImoveisActivity extends AppCompatActivity{
         lista.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                imovelSelecionado = (Imoveis) parent.getItemAtPosition(position);
+                final Imoveis imovelSelecionado = (Imoveis) parent.getItemAtPosition(position);
+                Toast.makeText(ListaImoveisActivity.this, imovelSelecionado.getDescricao() + " selecionado", Toast.LENGTH_SHORT).show();
                 abrir(imovelSelecionado);
-                atualizaLista();
-                Toast.makeText(ListaImoveisActivity.this, imovelSelecionado.getDescricao() + " selecionado",Toast.LENGTH_SHORT).show();
                 return true;
             }
         });
         lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                imovelSelecionado = (Imoveis) parent.getItemAtPosition(position);
-                Toast.makeText(ListaImoveisActivity.this, imovelSelecionado.getDescricao() + "selecionado",Toast.LENGTH_SHORT).show();
-                   Intent i = new Intent(ListaImoveisActivity.this, ExibirActivity.class);
+                final Imoveis imovelSelecionado = (Imoveis) parent.getItemAtPosition(position);
+                Toast.makeText(ListaImoveisActivity.this, imovelSelecionado.getId() + " " +
+                        " selecionado",Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(ListaImoveisActivity.this, ExibirActivity.class);
                 i.putExtra("imoveis", imovelSelecionado.getId());
                 startActivity(i);
             }
         });
+
     }
 
     @Override
@@ -99,24 +91,31 @@ public class ListaImoveisActivity extends AppCompatActivity{
     public void onBackPressed(){
         sair();
     }
-    public void abrir(final Imoveis imovel){
-        final CharSequence[] items = {"Alterar", "Deletar"};
-        new AlertDialog
-                .Builder(this)
-                .setItems(items, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        if (items[which] == "Alterar") {
-                            Intent i = new Intent(ListaImoveisActivity.this, EditarActivity.class);
-                            i.putExtra("id_imovel", imovel.getId());
-                            startActivity(i);
-                        } else {
-                            delete(imovel);
-                        }
+    public void abrir(final Imoveis imovelSelecionado){
+
+            final CharSequence[] items = {"Alterar", "Deletar", "Exibir"};
+            AlertDialog.Builder alert = new AlertDialog.Builder(ListaImoveisActivity.this);
+            alert.setItems(items, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    if (items[which] == "Alterar") {
+                        Intent i = new Intent(ListaImoveisActivity.this, EditarActivity.class);
+                        i.putExtra("id_imovel", imovelSelecionado.getId());
+                        startActivity(i);
                     }
-                })
-                .show();
-    }
+                    if (items[which] == "Exibir") {
+                        Intent i = new Intent(ListaImoveisActivity.this, ExibirActivity.class);
+                        i.putExtra("imoveis", imovelSelecionado.getId());
+                        startActivity(i);
+                    }
+                    if (items[which] == "Deletar"){
+                        db.deleteImoveis(imovelSelecionado.getId());
+                        atualizaLista();
+                    }
+                }
+            });
+            alert.show();
+        }
 
     public void sair(){
         new AlertDialog
@@ -131,12 +130,5 @@ public class ListaImoveisActivity extends AppCompatActivity{
                 })
                 .setNegativeButton("Não", null)
                 .show();
-    }
-    public void delete(Imoveis imovel) {
-
-        db.deleteImoveis(imovel.getId());
-
-        Toast.makeText(ListaImoveisActivity.this, "Imóvel deletado com sucesso!", Toast.LENGTH_LONG).show();
-
     }
 }

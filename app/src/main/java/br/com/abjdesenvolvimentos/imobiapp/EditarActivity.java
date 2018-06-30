@@ -18,6 +18,8 @@ import br.com.abjdesenvolvimentos.imobiapp.dominio.Imoveis;
 public class EditarActivity extends AppCompatActivity {
 
     private EditText descricao;
+    int id;
+    int id_ex;
     private EditText preco;
     private Spinner cidades;
     private EditText telefone;
@@ -48,10 +50,11 @@ public class EditarActivity extends AppCompatActivity {
         });
 
         Bundle extra = getIntent().getExtras();
+        id_ex = extra.getInt("id_imovel");
+        id = id_ex; // setando o id
         if (extra != null) {
-            int id = extra.getInt("id_imovel");
             for (Imoveis im: listaImoveis) {
-                if (im.getId() == id) {
+                if (im.getId() == id_ex) {
                     descricao.setText(im.getDescricao());
                     preco.setText(String.valueOf(im.getPreco()));
                     telefone.setText(im.getTelefone());
@@ -66,6 +69,7 @@ public class EditarActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 imovel = new Imoveis();
+                imovel.setId(id); // passando o id para enviar pro update
                 imovel.setDescricao(descricao.getText().toString());
                 imovel.setPreco(Double.parseDouble(preco.getText().toString()));
                 imovel.setTelefone(telefone.getText().toString());

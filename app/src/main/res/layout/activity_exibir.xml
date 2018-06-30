@@ -4,24 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="20dp"
     tools:context=".ExibirActivity"
     tools:layout_editor_absoluteY="81dp">
 
     <ImageView
         android:id="@+id/imageView5"
-        android:layout_width="337dp"
+        android:layout_width="0dp"
         android:layout_height="121dp"
         android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="32dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.741"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/imobiapp_logo" />
+        app:srcCompat="@drawable/ic_imobiapp_logo" />
 
 
     <LinearLayout
@@ -34,7 +33,6 @@
         android:layout_marginTop="8dp"
         android:gravity="center"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView5"
@@ -165,11 +163,11 @@
 
             <TextView
                 android:id="@+id/textView"
-                android:layout_width="66dp"
+                android:layout_width="21dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="R$"
-                android:textColor="@color/colorPrimary"
+                android:text="@string/rs"
+                android:textColor="@color/colorPrimaryDark"
                 android:textSize="36sp" />
 
             <TextView
@@ -178,9 +176,10 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
+                android:inputType="numberDecimal"
                 android:text="123456"
                 android:textColor="@color/colorPrimaryDark"
-                android:textSize="36sp"
+                android:textSize="24sp"
                 tools:layout_editor_absoluteX="256dp"
                 tools:layout_editor_absoluteY="219dp" />
 

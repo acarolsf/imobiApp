@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".ListaImoveisActivity">
 
-    <android.support.design.widget.AppBarLayout
+    <!-- <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/AppTheme.PopupOverlay">
@@ -19,13 +19,7 @@
             app:popupTheme="@style/AppTheme.PopupOverlay">
         </android.support.v7.widget.Toolbar>
 
-    </android.support.design.widget.AppBarLayout>
-
-    <include
-        android:id="@+id/et_search"
-        layout="@layout/content_lista_imoveis"
-        android:layout_height="444dp" />
-
+    </android.support.design.widget.AppBarLayout> -->
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
@@ -37,13 +31,12 @@
         android:layout_marginEnd="16dp"
         app:srcCompat="@drawable/ic_add_white" />
 
-    <ListView
-        android:id="@+id/lista"
-        android:layout_width="match_parent"
-        android:layout_height="505dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignStart="@id/toolbar"
-        android:foregroundGravity="bottom" />
+  <ListView
+      android:id="@+id/lista"
+      android:layout_width="match_parent"
+      android:layout_height="561dp"
+      android:layout_alignParentBottom="true"
+      android:layout_alignParentStart="true"
+      android:foregroundGravity="bottom" />
 
 </RelativeLayout>

@@ -23,6 +23,7 @@ public class CadastroImoveisActivity extends AppCompatActivity {
     private Spinner banheiros;
     private Spinner status;
     private EditText tipo;
+    private EditText telefone;
     private EditText corretora;
     private Button cancelar;
     private Button salvar;
@@ -33,7 +34,6 @@ public class CadastroImoveisActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro_imoveis);
-        // getSupportActionBar().setHomeButtonEnabled(true);
 
         db = new DBHelper(this);
         descricao = (EditText) findViewById(R.id.descricao_txt);
@@ -42,6 +42,7 @@ public class CadastroImoveisActivity extends AppCompatActivity {
         comodos = (Spinner) findViewById(R.id.comodos_txt);
         quartos = (Spinner) findViewById(R.id.quartos_txt);
         banheiros = (Spinner) findViewById(R.id.banheiros_txt);
+        telefone = (EditText) findViewById(R.id.telefone_txt);
         status = (Spinner) findViewById(R.id.status_txt);
         tipo = (EditText) findViewById(R.id.tipo_txt);
         corretora = (EditText) findViewById(R.id.corretora_txt);
@@ -65,6 +66,7 @@ public class CadastroImoveisActivity extends AppCompatActivity {
                 imovel.setQuartos(Integer.parseInt(quartos.getSelectedItem().toString()));
                 imovel.setBanheiros(Integer.parseInt(banheiros.getSelectedItem().toString()));
                 imovel.setStatus(status.getSelectedItem().toString());
+                imovel.setTelefone(telefone.getText().toString());
                 imovel.setTipo(tipo.getText().toString());
                 imovel.setCorretora(corretora.getText().toString());
                 db.salvarImoveis(imovel);
@@ -84,6 +86,7 @@ public class CadastroImoveisActivity extends AppCompatActivity {
                 .setPositiveButton("Sim", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
+                        db.fecharDB();
                         CadastroImoveisActivity.this.finish();
                     }
                 })

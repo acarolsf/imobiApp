@@ -3,8 +3,6 @@ package br.com.abjdesenvolvimentos.imobiapp;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -34,15 +32,13 @@ public class ExibirActivity extends AppCompatActivity {
     private TextView banheiros;
     private TextView comodos;
     private Button call;
-    String tel;
-    // Imoveis imovel;
+    private String tel;
     private DBHelper db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exibir);
-        getSupportActionBar().hide();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
 
@@ -51,10 +47,16 @@ public class ExibirActivity extends AppCompatActivity {
         db = new DBHelper(this);
         ArrayList<Imoveis> imoveisArrayList = db.listar();
         Bundle extra = getIntent().getExtras();
+
         if(extra != null) {
-            int id = extra.getInt("imovel");
+            int id = extra.getInt("imoveis");
+            Toast.makeText(ExibirActivity.this, "Id intent: "+id,Toast.LENGTH_SHORT).show();
+
             for(Imoveis i : imoveisArrayList) {
                 if (id == i.getId()) {
+                    Toast.makeText(ExibirActivity.this, "Id encontrada: "+i.getId(),Toast.LENGTH_SHORT).show();
+
+                    System.out.println(i.getId());
                     desc.setText(i.getDescricao());
                     cidade.setText(i.getCidade());
                     preco.setText(String.valueOf(i.getPreco()));
@@ -65,9 +67,10 @@ public class ExibirActivity extends AppCompatActivity {
                     banheiros.setText(String.valueOf(i.getBanheiros()));
                     comodos.setText(String.valueOf(i.getComodos()));
                     tel = String.valueOf(i.getTelefone());
+                    break;
                 } else {
-                    finish();
                     Toast.makeText(ExibirActivity.this, "Imóvel não existe",Toast.LENGTH_SHORT).show();
+                    finish();
                 }
 
             }
@@ -81,28 +84,6 @@ public class ExibirActivity extends AppCompatActivity {
                 startActivity(intentCall);
             }
         });
-
-//        SQLiteDatabase meuBanco = db.getReadableDatabase();
-//        Bundle extra = getIntent().getExtras();
-//        if(extra != null) {
-//            String nome = extra.getString("imovel");
-//
-//            Cursor cursor = meuBanco.rawQuery("SELECT * FROM imoveis", null);
-//            imovel.setDescricao(cursor.getString(0));
-//            while (cursor.moveToNext()) {
-//                if (nome == imovel.getDescricao()) {
-//                    desc.setText(imovel.getDescricao());
-//                    cidade.setText(imovel.getCidade());
-//                    preco.setText(String.valueOf(imovel.getPreco()));
-//                    corretora.setText(imovel.getCorretora());
-//                    status.setText(imovel.getStatus());
-//                    telefone.setText(imovel.getTelefone());
-//                    quartos.setText(imovel.getQuartos());
-//                    banheiros.setText(imovel.getBanheiros());
-//                    comodos.setText(imovel.getComodos());
-//                }
-//            }
-//        }
     }
 
     private void configuraBotoes() {
@@ -131,6 +112,7 @@ public class ExibirActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
     public boolean onCreateOptionsMenu(Menu menu){
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu,menu);
@@ -145,7 +127,6 @@ public class ExibirActivity extends AppCompatActivity {
         new AlertDialog.Builder(this)
                 .setTitle(getString(R.string.app_name))
                 .setMessage(getString(R.string.sobre))
-                .setIcon(R.drawable.ic_launcher_foreground)
                 .setPositiveButton("Voltar", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

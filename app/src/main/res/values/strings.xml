@@ -5,10 +5,7 @@
     <string name="salvar">Salvar</string>
     <string name="cancelar">Cancelar</string>
 
-    <string name="login">Login</string>
-    <string name="senha">Senha</string>
-    <string name="email">Email</string>
-    <string name="entrar">Entrar</string>
+    <string name="rs">R$</string>
     <string name="sair">Sair</string>
 
     <string name="title_activity_listar">ListarActivity</string>
